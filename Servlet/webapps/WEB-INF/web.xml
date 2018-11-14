@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+
+
+    <servlet>
+        <servlet-name>initServlet</servlet-name>
+        <!-- 指定servlet的类路径 -->
+        <servlet-class>com.cangin.servlet.InitServlet</servlet-class>
+        <!-- 可以添加需要初始化的参数 -->
+        <init-param>
+            <param-name>arg0</param-name>
+            <param-value>123</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!-- servlet的指定拦截请求 -->
+    <servlet-mapping>
+        <servlet-name>initServlet</servlet-name>
+        <url-pattern>/test01.do</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>down</servlet-name>
+        <servlet-class>com.cangin.servlet.DownServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>down</servlet-name>
+        <url-pattern>/down.do</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>download</servlet-name>
+        <servlet-class>com.cangin.servlet.DownLoadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>download</servlet-name>
+        <url-pattern>/download.do</url-pattern>
+    </servlet-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

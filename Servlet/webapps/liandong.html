@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二级联动</title>
+</head>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<body>
+
+<select name="companyType_1">
+    <option value="00" selected="selected">请选择</option>
+    <option value="01">政府/公共管理/社会保障</option>
+    <option value="02">金融/投资</option>
+</select>
+<select name="companyType_2">
+    <option value="0000" selected="selected">请选择</option>
+    <option value="0101">党政机构</option>
+    <option value="0102">公共事业/市政建设</option>
+    <option value="0103">社会保障</option>
+    <option value="0104">社会团体/非盈利组织</option>
+    <option value="0132">sdafasf</option>
+    <option value="0201">银行</option>
+    <option value="0202">保险</option>
+    <option value="0203">证券/期货</option>
+    <option value="0204">金融/投资</option>
+    <option value="0205">财会</option>
+    <option value="0206">审计</option>
+</select>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        // //这里必须用克隆，否则remove时会把$child的子节点都删除
+        var $child = $("[name=companyType_2]").clone();
+
+        $("[name=companyType_2] option:gt(0)").remove();
+
+        $("[name=companyType_1]").change(function () {
+
+            var parentVal = $(this).val();
+
+            //先删除，再添加
+            $("[name=companyType_2] option:gt(0)").remove();
+
+            if (parentVal != '00') {
+                //是把符合条件的克隆出来然后添加到selected节点中,这样不会改变$child本身的内容
+                $child.find("option[value^=" + parentVal + "]").clone().appendTo($("[name=companyType_2]"));
+            }
+
+        })
+
+
+    })
+</script>
+
+</body>
+</html>
